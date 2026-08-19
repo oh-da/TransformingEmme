@@ -2,7 +2,13 @@
 
 Zone system: `TAZ_v41.shp` / `TAZV41` -- **1310 zones** (1101..8451), used as both the CSV index and the CSV header.
 
-Scenarios: 2018, 2050_BU, 2050_HS
+Scenarios:
+
+| scenario | EMME scenario | directory |
+|---|---:|---|
+| 2018 | 1971 | `Matrices/2018/` |
+| 2050_BU | 5971 | `Matrices/2050_BU/` |
+| 2050_SP | 5972 | `Matrices/2050_HS/` |
 
 ## Test summary
 
@@ -28,9 +34,9 @@ Scenarios: 2018, 2050_BU, 2050_HS
 | 2050_BU | AUTOTOT | 572,469 | 337,426 | 529,048 | 1,438,943 |
 | 2050_BU | PRKRTotDemand | 34,608 | 11,597 | 3,939 | 50,144 |
 | 2050_BU | TransitTotDemand | 291,570 | 157,365 | 189,616 | 638,552 |
-| 2050_HS | AUTOTOT | 578,659 | 340,301 | 536,320 | 1,455,281 |
-| 2050_HS | PRKRTotDemand | 35,307 | 11,508 | 3,995 | 50,810 |
-| 2050_HS | TransitTotDemand | 299,939 | 159,847 | 194,311 | 654,097 |
+| 2050_SP | AUTOTOT | 578,659 | 340,301 | 536,320 | 1,455,281 |
+| 2050_SP | PRKRTotDemand | 35,307 | 11,508 | 3,995 | 50,810 |
+| 2050_SP | TransitTotDemand | 299,939 | 159,847 | 194,311 | 654,097 |
 
 ## Mode shares (daily, inside the TAZ layer)
 
@@ -38,11 +44,11 @@ Scenarios: 2018, 2050_BU, 2050_HS
 |---|---|---|---|---|
 | 2018 | 1,197,926 (83.2%) | 13,446 (0.9%) | 227,605 (15.8%) | 1,438,977 |
 | 2050_BU | 1,438,943 (67.6%) | 50,144 (2.4%) | 638,552 (30.0%) | 2,127,639 |
-| 2050_HS | 1,455,281 (67.4%) | 50,810 (2.4%) | 654,097 (30.3%) | 2,160,187 |
+| 2050_SP | 1,455,281 (67.4%) | 50,810 (2.4%) | 654,097 (30.3%) | 2,160,187 |
 
 ## Growth vs 2018 (daily totals inside the TAZ layer)
 
-| matrix | 2018 | 2050_BU | 2050_HS |
+| matrix | 2018 | 2050_BU | 2050_SP |
 |---|---|---|---|
 | Auto total trips | 1,197,926 (x1.00) | 1,438,943 (x1.20) | 1,455,281 (x1.21) |
 | Park & Ride + Kiss & Ride total demand | 13,446 (x1.00) | 50,144 (x3.73) | 50,810 (x3.78) |
@@ -72,12 +78,12 @@ The `.in` files also carry zones that do not exist in `TAZ_v41` -- external/cord
 | 2050_BU | TransitTotDemand | AM | 392,254.5 | 291,570.3 | 100,684.2 | 74.33% |
 | 2050_BU | TransitTotDemand | Offpeak | 200,088.0 | 157,365.3 | 42,722.7 | 78.65% |
 | 2050_BU | TransitTotDemand | PM | 251,884.9 | 189,616.0 | 62,269.0 | 75.28% |
-| 2050_HS | AUTOTOT | AM | 726,172.1 | 578,658.8 | 147,513.3 | 79.69% |
-| 2050_HS | AUTOTOT | Offpeak | 443,529.9 | 340,301.4 | 103,228.5 | 76.73% |
-| 2050_HS | AUTOTOT | PM | 647,805.5 | 536,320.3 | 111,485.2 | 82.79% |
-| 2050_HS | PRKRTotDemand | AM | 40,825.4 | 35,306.6 | 5,518.8 | 86.48% |
-| 2050_HS | PRKRTotDemand | Offpeak | 11,508.1 | 11,508.1 | 0.0 | 100.00% |
-| 2050_HS | PRKRTotDemand | PM | 3,995.2 | 3,995.2 | 0.0 | 100.00% |
-| 2050_HS | TransitTotDemand | AM | 410,393.2 | 299,938.7 | 110,454.5 | 73.09% |
-| 2050_HS | TransitTotDemand | Offpeak | 211,989.4 | 159,847.2 | 52,142.1 | 75.40% |
-| 2050_HS | TransitTotDemand | PM | 257,115.5 | 194,310.7 | 62,804.8 | 75.57% |
+| 2050_SP | AUTOTOT | AM | 726,172.1 | 578,658.8 | 147,513.3 | 79.69% |
+| 2050_SP | AUTOTOT | Offpeak | 443,529.9 | 340,301.4 | 103,228.5 | 76.73% |
+| 2050_SP | AUTOTOT | PM | 647,805.5 | 536,320.3 | 111,485.2 | 82.79% |
+| 2050_SP | PRKRTotDemand | AM | 40,825.4 | 35,306.6 | 5,518.8 | 86.48% |
+| 2050_SP | PRKRTotDemand | Offpeak | 11,508.1 | 11,508.1 | 0.0 | 100.00% |
+| 2050_SP | PRKRTotDemand | PM | 3,995.2 | 3,995.2 | 0.0 | 100.00% |
+| 2050_SP | TransitTotDemand | AM | 410,393.2 | 299,938.7 | 110,454.5 | 73.09% |
+| 2050_SP | TransitTotDemand | Offpeak | 211,989.4 | 159,847.2 | 52,142.1 | 75.40% |
+| 2050_SP | TransitTotDemand | PM | 257,115.5 | 194,310.7 | 62,804.8 | 75.57% |

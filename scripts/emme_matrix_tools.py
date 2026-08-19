@@ -42,6 +42,24 @@ KIND_LABELS = {
     "TransitTotDemand": "Transit total trips",
 }
 
+# Scenario directories whose name differs from the scenario's name. The 2050
+# Strategic Plan scenario (5972) is stored in a directory called ``2050_HS``
+# but is referred to as 2050_SP everywhere else.
+SCENARIO_LABELS = {"2050_HS": "2050_SP"}
+
+# EMME scenario numbers, from ExportedMatrices_TLVModel_V433.txt.
+SCENARIO_NUMBERS = {"2018": 1971, "2050_BU": 5971, "2050_SP": 5972}
+
+
+def scenario_label(directory_name: str) -> str:
+    """Scenario name to report for a directory under ``Matrices``."""
+    return SCENARIO_LABELS.get(directory_name, directory_name)
+
+
+def matches_scenario(directory_name: str, wanted: str) -> bool:
+    """True if ``wanted`` names this scenario, by directory name or by label."""
+    return wanted in (directory_name, scenario_label(directory_name))
+
 
 # --------------------------------------------------------------------------- #
 # TAZ layer

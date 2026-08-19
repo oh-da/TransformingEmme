@@ -37,11 +37,13 @@ from emme_matrix_tools import (  # noqa: E402
     KIND_LABELS,
     MATRIX_KINDS,
     PERIODS,
+    SCENARIO_NUMBERS,
     expected_files,
     find_scenarios,
     parse_emme_in,
     read_matrix_csv,
     read_taz_ids,
+    scenario_label,
 )
 
 REL_TOL = 1e-9  # in-memory comparisons
@@ -111,8 +113,10 @@ def main() -> int:
     intrazonal: dict[tuple[str, str, str], float] = {}
     nonzero_cells: dict[tuple[str, str, str], int] = {}
 
+    scen_dirs: dict[str, str] = {}
     for scenario_dir in scenarios:
-        scen = scenario_dir.name
+        scen = scenario_label(scenario_dir.name)
+        scen_dirs[scen] = scenario_dir.name
         print(f"=== {scen}")
         for kind, period, in_path in expected_files(scenario_dir):
             key = (scen, kind, period)
@@ -210,7 +214,7 @@ def main() -> int:
     # 7. comparisons across periods, matrices and scenarios
     # ------------------------------------------------------------------ #
     print("=== comparisons")
-    scen_names = [s.name for s in scenarios]
+    scen_names = [scenario_label(s.name) for s in scenarios]
     daily: dict[tuple[str, str], float] = {}
     daily_file: dict[tuple[str, str], float] = {}
     for scen in scen_names:
@@ -275,6 +279,7 @@ def main() -> int:
         w.writerow(
             [
                 "scenario",
+                "scenario_dir",
                 "matrix",
                 "period",
                 "period_label",
@@ -298,6 +303,7 @@ def main() -> int:
                     w.writerow(
                         [
                             scen,
+                            scen_dirs[scen],
                             kind,
                             period,
                             PERIODS[period],
@@ -321,7 +327,12 @@ def main() -> int:
             f"({taz_ids.min()}..{taz_ids.max()}), used as both the CSV index "
             "and the CSV header.\n\n"
         )
-        fh.write(f"Scenarios: {', '.join(scen_names)}\n\n")
+        fh.write("Scenarios:\n\n")
+        fh.write("| scenario | EMME scenario | directory |\n|---|---:|---|\n")
+        for scen in scen_names:
+            number = SCENARIO_NUMBERS.get(scen, "")
+            fh.write(f"| {scen} | {number} | `Matrices/{scen_dirs[scen]}/` |\n")
+        fh.write("\n")
 
         fh.write("## Test summary\n\n")
         groups = defaultdict(lambda: [0, 0])

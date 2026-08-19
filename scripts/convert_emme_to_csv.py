@@ -31,13 +31,16 @@ from emme_matrix_tools import (  # noqa: E402
     PERIODS,
     expected_files,
     find_scenarios,
+    matches_scenario,
     parse_emme_in,
     read_taz_ids,
+    scenario_label,
     write_matrix_csv,
 )
 
 SUMMARY_COLUMNS = [
     "scenario",
+    "scenario_dir",
     "matrix",
     "period",
     "period_label",
@@ -75,7 +78,7 @@ def main() -> int:
     parser.add_argument(
         "--scenario",
         action="append",
-        help="limit to the named scenario directory (repeatable)",
+        help="limit to the named scenario, by directory or label (repeatable)",
     )
     args = parser.parse_args()
 
@@ -89,8 +92,11 @@ def main() -> int:
 
     scenarios = find_scenarios(matrices_root)
     if args.scenario:
-        wanted = set(args.scenario)
-        scenarios = [s for s in scenarios if s.name in wanted]
+        scenarios = [
+            s
+            for s in scenarios
+            if any(matches_scenario(s.name, w) for w in args.scenario)
+        ]
     if not scenarios:
         print("no scenarios found", file=sys.stderr)
         return 1
@@ -98,7 +104,9 @@ def main() -> int:
     rows = []
     off_taz_rows = []
     for scenario_dir in scenarios:
-        print(f"\n=== scenario {scenario_dir.name}")
+        scen = scenario_label(scenario_dir.name)
+        suffix = "" if scen == scenario_dir.name else f" (directory {scenario_dir.name})"
+        print(f"\n=== scenario {scen}{suffix}")
         for kind, period, in_path in expected_files(scenario_dir):
             if not in_path.exists():
                 print(f"  MISSING {in_path.name}", file=sys.stderr)
@@ -124,7 +132,8 @@ def main() -> int:
             )
             rows.append(
                 {
-                    "scenario": scenario_dir.name,
+                    "scenario": scen,
+                    "scenario_dir": scenario_dir.name,
                     "matrix": kind,
                     "period": period,
                     "period_label": PERIODS[period],
@@ -148,7 +157,8 @@ def main() -> int:
             for zone in sorted(parsed.off_taz_origins | parsed.off_taz_dests):
                 off_taz_rows.append(
                     {
-                        "scenario": scenario_dir.name,
+                        "scenario": scen,
+                        "scenario_dir": scenario_dir.name,
                         "matrix": kind,
                         "period": period,
                         "zone": zone,
@@ -184,6 +194,7 @@ def main() -> int:
             fh,
             fieldnames=[
                 "scenario",
+                "scenario_dir",
                 "matrix",
                 "period",
                 "zone",

@@ -4,14 +4,17 @@ Each scenario folder holds the EMME exports and their CSV equivalents:
 
 ```
 Matrices/
-  2018/            EMME/*.in   CSV/*.csv     Scenario 1971 — base year 2018
-  2050_BU/         EMME/*.in   CSV/*.csv     Scenario 5971 — 2050 Business As Usual
-  2050_HS/         EMME/*.in   CSV/*.csv     Scenario 5972 — 2050 Strategic Plan
+  2018/            EMME/*.in   CSV/*.csv     2018     — EMME scenario 1971, base year
+  2050_BU/         EMME/*.in   CSV/*.csv     2050_BU  — EMME scenario 5971, Business As Usual
+  2050_HS/         EMME/*.in   CSV/*.csv     2050_SP  — EMME scenario 5972, Strategic Plan
   QA/                                        conversion + validation output
 ```
 
-> The 2050 strategic-plan scenario is stored as `2050_HS` (it is the "SP" /
-> Strategic Plan scenario 5972 in `ExportedMatrices_TLVModel_V433.txt`).
+> **`2050_HS` is the `2050_SP` scenario.** The directory keeps the name the
+> EMME export used; everything the scripts report — QA tables, the validation
+> report, the `scenario` column of every QA CSV — calls it `2050_SP`, with the
+> directory name alongside it in `scenario_dir`. Either name works for
+> `--scenario` on the command line.
 
 ## The nine matrices per scenario
 
