@@ -1,0 +1,38 @@
+Log 19-08-2026 11:02
+Scenario 1971: Base year 2018
+Scenario 1971, exported .in matrices from OUT directory:
+AUTOTOT_a.in
+AUTOTOT_o.in
+AUTOTOT_p.in
+PRKRTotDemand_a.in
+PRKRTotDemand_o.in
+PRKRTotDemand_p.in
+TransitTotDemand_a.in
+TransitTotDemand_o.in
+TransitTotDemand_p.in
+
+Log 19-08-2026 11:04
+Scenario 5971: Base year 2050, Business As Usual
+Scenario 5971, exported .in matrices from OUT directory:
+AUTOTOT_a.in
+AUTOTOT_o.in
+AUTOTOT_p.in
+PRKRTotDemand_a.in
+PRKRTotDemand_o.in
+PRKRTotDemand_p.in
+TransitTotDemand_a.in
+TransitTotDemand_o.in
+TransitTotDemand_p.in
+
+Log 19-08-2026 11:06
+Scenario 5972: Base year 2050, Strategic Plan for Diur
+Scenario 5972, exported .in matrices from OUT directory:
+AUTOTOT_a.in
+AUTOTOT_o.in
+AUTOTOT_p.in
+PRKRTotDemand_a.in
+PRKRTotDemand_o.in
+PRKRTotDemand_p.in
+TransitTotDemand_a.in
+TransitTotDemand_o.in
+TransitTotDemand_p.in
