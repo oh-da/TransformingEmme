@@ -73,7 +73,7 @@ def main() -> int:
     parser.add_argument(
         "--gzip",
         action="store_true",
-        help="also write a .csv.gz beside each CSV and drop the plain file",
+        help="write compressed .csv.gz files instead of plain .csv",
     )
     parser.add_argument(
         "--scenario",
